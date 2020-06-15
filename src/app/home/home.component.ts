@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     if (this.term !== '') {
       console.log(this.term);
       this.employee = this.employee.filter(res => {
-        return res.fullName_SL.toLocaleLowerCase().match(this.term.toLocaleLowerCase());
+        return res.firstContractingSalary.toLocaleLowerCase().match(this.term.toLocaleLowerCase());
       });
     } else {
       this.ngOnInit();
