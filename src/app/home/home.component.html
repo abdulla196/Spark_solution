@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="row">
+    <app-sidebar></app-sidebar>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <app-navebar></app-navebar>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary"> <i class="fa fa-plus"></i>
+              Add Employee</button>
+          </div>
+          <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary"> <i class="fa fa-plus"></i>
+              Add filter</button>
+              <input type="text" [(ngModel)]='term' (keyup)="search($event.target.value)">
+          </div>
+          <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary"> <i
+                class="fa fa-download"></i> Export</button>
+          </div>
+
+        </div>
+      </div>
+      <h2>Section title</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>fullName</th>
+              <th>department</th>
+              <th>position</th>
+              <th>salary</th>
+              <th>employeeJobStatuses</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of employee | paginate: { id: 'listing_pagination',
+                                                      itemsPerPage: pageitem,
+                                                      currentPage: page,
+                                                      totalItems: totalRecords } ;let i = index ">
+              <td>{{i + 1}}</td>
+              <td>{{employee.fullName_SL}}</td>
+              <td>{{employee.department.name_SL}}</td>
+              <td>{{employee.position.name_FL}}</td>
+              <td>{{employee.firstContractingSalary}}</td>
+              <td>{{employee.employeeJobStatuses[0].status}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+          <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event">
+          </pagination-controls>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
